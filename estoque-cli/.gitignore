@@ -1,0 +1,8 @@
+target/
+*.class
+*.jar
+.idea/
+*.iml
+.vscode/
+dados/produtos.json
+.DS_Store
