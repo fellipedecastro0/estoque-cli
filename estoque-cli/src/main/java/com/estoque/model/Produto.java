@@ -11,6 +11,10 @@ public class Produto {
     private double preco;
     private int quantidadeMinima;
 
+    private Produto() {
+        // Uso pelo Gson na desserialização de JSON
+    }
+
     public Produto(String nome, int quantidade, double preco, int quantidadeMinima) {
         this.id = UUID.randomUUID().toString();
         this.nome = nome;
