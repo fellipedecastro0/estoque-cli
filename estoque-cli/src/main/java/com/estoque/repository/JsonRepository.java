@@ -14,7 +14,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonRepository {
+public class JsonRepository implements ProdutoRepository {
 
     private static final String DATA_FILE = "dados/produtos.json";
 
@@ -22,6 +22,7 @@ public class JsonRepository {
 
     private final Type listType = new TypeToken<ArrayList<Produto>>() { }.getType();
 
+    @Override
     public void salvar(List<Produto> produtos) throws IOException {
         Path path = Path.of(DATA_FILE);
         Files.createDirectories(path.getParent());
@@ -29,6 +30,7 @@ public class JsonRepository {
         Files.writeString(path, json, StandardCharsets.UTF_8);
     }
 
+    @Override
     public List<Produto> carregar() {
         Path path = Path.of(DATA_FILE);
         if (!Files.exists(path)) {
