@@ -25,7 +25,7 @@ public class CLI {
     }
 
     public void iniciar() {
-        System.out.println("Estoque CLI v0.2.0");
+        System.out.println("Estoque CLI v1.0.0");
         boolean rodando = true;
         while (rodando) {
             exibirMenu();

@@ -6,7 +6,7 @@
 
     <groupId>com.estoque</groupId>
     <artifactId>estoque-cli</artifactId>
-    <version>0.2.0</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
     <name>estoque-cli</name>
     <description>Controle de estoque via CLI para microempreendedores</description>
