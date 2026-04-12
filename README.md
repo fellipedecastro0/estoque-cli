@@ -98,15 +98,7 @@ mvn checkstyle:check
 - Repositório **público**: [fellipedecastro0/estoque-cli](https://github.com/fellipedecastro0/estoque-cli)
 - Integração contínua: workflow [CI](https://github.com/fellipedecastro0/estoque-cli/actions/workflows/ci.yml) (Checkstyle, testes e build). Após cada alteração, confira na aba Actions se o último run no branch `main` concluiu com sucesso.
 
-## Entrega acadêmica (PDF na plataforma)
 
-O enunciado pede um PDF com identificação e link. Inclua, no mínimo:
-
-- Nome completo do aluno
-- Nome da disciplina
-- Nome do projeto (**Estoque CLI**)
-- Breve descrição da proposta
-- Link do repositório público: https://github.com/fellipedecastro0/estoque-cli
 
 ## Autor
 
