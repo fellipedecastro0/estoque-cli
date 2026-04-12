@@ -182,13 +182,12 @@ public class CLI {
     }
 
     private static void imprimirLinhaProduto(Produto p) {
-        String id = p.getId();
-        String idCurto = id.length() <= 8 ? id : id.substring(0, 8);
+        String id = p.getId() == null ? "" : p.getId();
         String nome = p.getNome() == null ? "" : p.getNome();
         if (nome.length() > 28) {
             nome = nome.substring(0, 25) + "...";
         }
         System.out.printf(Locale.US, "%-10s %-28s %10d %12.2f%n",
-                idCurto, nome, p.getQuantidade(), p.getPreco());
+                id, nome, p.getQuantidade(), p.getPreco());
     }
 }

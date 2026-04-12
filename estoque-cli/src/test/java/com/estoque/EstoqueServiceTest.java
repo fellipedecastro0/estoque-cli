@@ -32,8 +32,20 @@ class EstoqueServiceTest {
 
         List<Produto> lista = service.listarProdutos();
         assertEquals(1, lista.size());
+        assertEquals("1", lista.get(0).getId());
         assertEquals("Caneta", lista.get(0).getNome());
         assertEquals(5, lista.get(0).getQuantidade());
+    }
+
+    @Test
+    void adicionarProduto_segundoItem_deveReceberIdSequencial() throws IOException {
+        service.adicionarProduto("A", 1, 1.0, 0);
+        service.adicionarProduto("B", 1, 1.0, 0);
+
+        List<Produto> lista = service.listarProdutos();
+        assertEquals(2, lista.size());
+        assertEquals("1", lista.get(0).getId());
+        assertEquals("2", lista.get(1).getId());
     }
 
     @Test

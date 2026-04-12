@@ -1,7 +1,6 @@
 package com.estoque.model;
 
 import java.util.Objects;
-import java.util.UUID;
 
 public class Produto {
 
@@ -13,14 +12,6 @@ public class Produto {
 
     private Produto() {
         // Uso pelo Gson na desserialização de JSON
-    }
-
-    public Produto(String nome, int quantidade, double preco, int quantidadeMinima) {
-        this.id = UUID.randomUUID().toString();
-        this.nome = nome;
-        this.quantidade = quantidade;
-        this.preco = preco;
-        this.quantidadeMinima = quantidadeMinima;
     }
 
     public Produto(String id, String nome, int quantidade, double preco, int quantidadeMinima) {

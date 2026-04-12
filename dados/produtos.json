@@ -1,0 +1,9 @@
+[
+  {
+    "id": "1",
+    "nome": "remo",
+    "quantidade": 20,
+    "preco": 5443232.0,
+    "quantidadeMinima": 10
+  }
+]

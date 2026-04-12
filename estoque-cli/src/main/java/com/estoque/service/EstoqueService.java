@@ -29,9 +29,28 @@ public class EstoqueService {
         if (preco < 0) {
             throw new IllegalArgumentException("preco nao pode ser negativo");
         }
-        Produto produto = new Produto(nome.trim(), quantidade, preco, quantidadeMinima);
+        String id = proximoId();
+        Produto produto = new Produto(id, nome.trim(), quantidade, preco, quantidadeMinima);
         produtos.add(produto);
         repository.salvar(produtos);
+    }
+
+    private String proximoId() {
+        int max = 0;
+        for (Produto p : produtos) {
+            if (p.getId() == null || p.getId().isEmpty()) {
+                continue;
+            }
+            try {
+                int n = Integer.parseInt(p.getId().trim());
+                if (n > max) {
+                    max = n;
+                }
+            } catch (NumberFormatException ignored) {
+                // ignora IDs antigos não numéricos (ex.: UUID)
+            }
+        }
+        return Integer.toString(max + 1);
     }
 
     public void removerProduto(String id) throws IOException {
