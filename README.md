@@ -171,3 +171,7 @@ Fellipe de Castro
 ## Repositório
 
 https://github.com/fellipedecastro0/estoque-cli
+
+## Ferramentas de apoio
+
+Parte do desenvolvimento e da documentação (README, revisão de código, sugestões de correção e explicações) foi feita com apoio do **Cursor**, utilizando assistência por IA no editor como guia para refinar ideias e acelerar tarefas rotineiras — a decisão final sobre o código e o conteúdo permanece com o autor do projeto.
