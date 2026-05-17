@@ -2,9 +2,11 @@
 
 ## Aplicação publicada (interface web)
 
-**GitHub Pages:** [https://fellipedecastro0.github.io/estoque-cli/](https://fellipedecastro0.github.io/estoque-cli/)
+**Hospedagem:** [GitHub Pages](https://pages.github.com/) (site estático público gerado pelo repositório).
 
-> O deploy ocorre a partir da branch `main` (workflow [.github/workflows/pages.yml](.github/workflows/pages.yml)). Depois do primeiro merge, configure **Settings → Pages → Build and deployment → Source: GitHub Actions** se ainda não estiver assim. Se a URL acima ainda não carregar, abra a aba **Actions** e confira o workflow **Deploy GitHub Pages**.
+**URL do deploy:** [https://fellipedecastro0.github.io/estoque-cli/](https://fellipedecastro0.github.io/estoque-cli/)
+
+> O deploy roda automaticamente em todo **push na branch `main`**, pelo workflow [.github/workflows/pages.yml](.github/workflows/pages.yml), que envia o build da pasta `frontend` como artefato do Pages. Se a URL não abrir logo após o primeiro deploy, em **GitHub → Settings → Pages**, defina **Build and deployment → Source: GitHub Actions**. Consulte também a aba **Actions** no repositório (workflow **Deploy GitHub Pages**).
 
 [![CI](https://github.com/fellipedecastro0/estoque-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/fellipedecastro0/estoque-cli/actions/workflows/ci.yml)
 
@@ -14,11 +16,24 @@ Aplicação em linha de comando para **controle simples de estoque**, pensada pa
 
 **Problema:** falta de um registro acessível (sem sistema caro) faz com que compras e vendas fiquem no improviso.
 
-**Solução:** cadastrar produtos com nome, quantidade, preço e quantidade mínima; listar, buscar, atualizar, remover e destacar itens com estoque baixo. O modo **CLI (Java)** persiste em arquivo JSON entre execuções; a **interface web** roda no navegador e usa `localStorage` (sem instalação), com cotação **USD → BRL** via [AwesomeAPI](https://docs.awesomeapi.com.br/api-de-moedas).
+**Solução:** cadastrar produtos com nome, quantidade, preço e quantidade mínima; listar, buscar, atualizar, remover e destacar itens com estoque baixo. O modo **CLI (Java)** persiste em arquivo JSON entre execuções; a **interface web** roda no navegador e usa `localStorage` (sem instalação), exibindo ainda dados de mercado vindos da internet (veja abaixo).
 
 **Interface web vs CLI:** os dados **não** são compartilhados entre os dois modos. Use a web para acesso rápido e referência de câmbio; use a CLI no computador com Java para persistência em arquivo local como na etapa anterior.
 
 **Público-alvo:** pequenos negócios, vendedores autônomos e MEIs que precisam de controle básico no próprio computador.
+
+### Integração com API pública (AwesomeAPI)
+
+A interface web complementa o controle de estoque com **cotação em tempo real do dólar (USD → BRL)** usando a [AwesomeAPI — API de moedas](https://docs.awesomeapi.com.br/api-de-moedas) (serviço gratuito, sem chave obrigatória para o cenário atual).
+
+| Detalhe | Valor |
+|--------|--------|
+| Método | `GET` |
+| Endpoint usado | `https://economia.awesomeapi.com.br/json/last/USD-BRL` |
+| Dados exibidos na tela | Compra (**bid**), venda (**ask**), variação (**varBid**) e horário da cotação quando disponível |
+| Implementação no código | Cliente e parser da resposta em `cotacaoApi.js`, junto aos arquivos HTML/CSS/JS publicados pelo workflow do GitHub Pages (pasta de origem definida em [.github/workflows/pages.yml](.github/workflows/pages.yml)) |
+
+Ao carregar a página e ao clicar em **Atualizar**, o front faz a requisição, interpreta o JSON (`USDBRL`) e atualiza os campos na interface; falhas de rede ou resposta inválida são tratadas sem travar o restante da aplicação.
 
 ## Funcionalidades
 
@@ -153,6 +168,6 @@ O enunciado pede um PDF com identificação e link. Inclua, no mínimo:
 
 Fellipe de Castro
 
-## Repositóri o
+## Repositório
 
 https://github.com/fellipedecastro0/estoque-cli
