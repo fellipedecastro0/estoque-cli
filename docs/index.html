@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estoque Web — MEI</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <h1>Estoque Web</h1>
+        <p class="tagline">Controle simples para microempreendedores · cotação USD em tempo real</p>
+      </div>
+      <section class="cotacao" aria-live="polite">
+        <div class="cotacao-title">
+          <span>Dólar (USD → BRL)</span>
+          <button type="button" id="btn-atualizar-cotacao" class="btn btn-ghost">Atualizar</button>
+        </div>
+        <dl class="cotacao-grid">
+          <div>
+            <dt>Compra (bid)</dt>
+            <dd id="cotacao-bid">…</dd>
+          </div>
+          <div>
+            <dt>Venda (ask)</dt>
+            <dd id="cotacao-ask">…</dd>
+          </div>
+          <div>
+            <dt>Variação (varBid)</dt>
+            <dd id="cotacao-var">…</dd>
+          </div>
+        </dl>
+        <p id="cotacao-atualizado" class="cotacao-meta"></p>
+        <p id="cotacao-erro" class="cotacao-erro" hidden></p>
+        <p class="cotacao-note">Fonte: <a href="https://economia.awesomeapi.com.br/" rel="noopener noreferrer" target="_blank">AwesomeAPI</a></p>
+      </section>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="panel">
+      <h2>Novo produto</h2>
+      <form id="form-produto" class="form" novalidate>
+        <div class="form-grid">
+          <label class="field">
+            <span>Nome</span>
+            <input id="nome" name="nome" type="text" autocomplete="off" required />
+          </label>
+          <label class="field">
+            <span>Quantidade</span>
+            <input id="quantidade" name="quantidade" type="number" min="0" step="1" required />
+          </label>
+          <label class="field">
+            <span>Preço (R$)</span>
+            <input id="preco" name="preco" type="number" min="0" step="0.01" required />
+          </label>
+          <label class="field">
+            <span>Mínimo (alerta)</span>
+            <input id="quantidade-minima" name="quantidadeMinima" type="number" min="0" step="1" required />
+          </label>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+      </form>
+      <p id="form-status" class="form-status" role="status"></p>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Produtos</h2>
+        <label class="field field-inline">
+          <span class="sr-only">Buscar por nome</span>
+          <input id="busca" type="search" placeholder="Buscar por nome (trecho)…" autocomplete="off" />
+        </label>
+      </div>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">Quantidade</th>
+              <th scope="col">Preço</th>
+              <th scope="col">Mínimo</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-produtos"></tbody>
+        </table>
+      </div>
+      <p class="hint">Dados salvos apenas neste navegador (<code>localStorage</code>). A <strong>CLI Java</strong> continua usando arquivo JSON local separado.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-inner">Autor: <strong>Fellipe de Castro Oliveira</strong></p>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
